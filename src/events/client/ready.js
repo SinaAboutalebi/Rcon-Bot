@@ -1,9 +1,4 @@
 //---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
-//Packages 
-
-const figlet = require("figlet");
-
-//---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
 //Colors
 
 magenta = "\x1b[35m";
@@ -21,17 +16,6 @@ module.exports = {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
 
-    figlet.text( //Print ASCII 
-      "Mg Rcon",
-      {
-        font: "doh",
-        width: 150,
-      },
-      function (err, data) {
-        console.log(magenta, data);
-      }
-    );
-
     await sleep(1000);
 
     console.log( //Log UserTag & UserID
@@ -41,9 +25,9 @@ module.exports = {
 
     console.log(cyan, "[🖥️] Coded By Savage 0P🦠");
     //Call Functions
-    client.joinVoice();
-    client.memberCount();
-    client.statusChanger();
+    //client.joinVoice();
+    //client.memberCount();
+    //client.statusChanger();
   },
 };
 //---------------------------💔🚬 'Zer0Power 💔🚬---------------------------//

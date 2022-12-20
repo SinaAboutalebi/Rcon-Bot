@@ -39,7 +39,7 @@ for (const folder of functionFolders) { //Function Handler
 
 client.handleCommands();
 client.handleEvents();
-client.handleComponents();
+//client.handleComponents();
 
 //---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
 //Login 

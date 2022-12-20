@@ -24,12 +24,13 @@ module.exports = (client) => {
                 const command = require(`../../commands/${folder}/${file}`);
                 commands.set(command.data.name, command);
                 commandsArray.push(command.data.toJSON());
+                console.log(`[ℹ️] Command : < ${command.data.name} > registered.`);
             }
         }
 
         const rest = new REST({ version: "10" }).setToken(process.env.token); //Application Commands API 
         try {
-            console.log("[⚙️] Started refreshing application (/) commands...");
+            console.log("[⚙️] Start refreshing application (/) commands...");
 
             await rest.put(Routes.applicationGuildCommands(config.clientID, config.guildID), {
                 body: client.commandsArray,

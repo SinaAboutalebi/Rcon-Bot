@@ -21,6 +21,7 @@
     "discord-api-types": "^0.37.24",
     "discord.js": "14.3",
     "dotenv": "^16.0.3",
-    "figlet": "^1.5.2"
+    "figlet": "^1.5.2",
+    "rcon": "^1.1.0"
   }
 }

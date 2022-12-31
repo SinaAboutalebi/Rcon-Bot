@@ -18,10 +18,12 @@
   "homepage": "https://github.com/Zer0Power/Rcon-Bot#readme",
   "dependencies": {
     "@discordjs/rest": "1.1",
+    "axios": "^1.2.2",
     "discord-api-types": "^0.37.24",
     "discord.js": "14.3",
     "dotenv": "^16.0.3",
     "figlet": "^1.5.2",
+    "node-fetch": "2.6.7",
     "rcon": "^1.1.0"
   }
 }

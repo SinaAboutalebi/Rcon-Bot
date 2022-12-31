@@ -1,8 +1,10 @@
 //---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
 //Packages
 
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
-const connection = require("../../functions/utility/connection");
+const { SlashCommandBuilder } = require("discord.js");
+const env = require("dotenv").config();
+const fetch = require('node-fetch');
+
 
 //---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
 //Command 
@@ -11,49 +13,60 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("rcon")
         .setDescription("Send Command To Servers!")
-
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('ban')
-                .setDescription('ban a user')
-                .addStringOption(option => option.setName('server').setDescription('The server')
-                    .addChoices(
-                        { name: 'aim1', value: 'aim1' },
-                        { name: 'aim2', value: 'aim2' },
-                        { name: 'awp1', value: 'awp1' },
-                    ))
-                .addStringOption(option => option.setName('target').setDescription('The user'))
-                .addNumberOption(option => option.setName('time').setDescription('Time to ban'))
-                .addStringOption(option => option.setName('reason').setDescription('reason to ban'))
-        )
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('unban')
-                .setDescription('ban a user')
-                .addStringOption(option => option.setName('target').setDescription('The user'))
-                .addNumberOption(option => option.setName('time').setDescription('Time to ban'))
-                .addStringOption(option => option.setName('reason').setDescription('reason to ban'))
+        .addStringOption((option) =>
+            option
+                .setName("command")
+                .setDescription("Enter your Command...")
+                .setRequired(true)
         ),
 
     async execute(interaction, client) {
 
-        if (interaction.options.getSubcommand() === 'ban') {
+        const command = interaction.options.get("command")
 
-            const server = interaction.options.getString('server');
-
-          client.connect(server,"sm_plist")
+        data = {
+            user: interaction.user.id,
+            channelID: interaction.channel.id,
+            cmd: command.value,
+            auth: process.env.AUTH
 
         }
 
-        const ping = new EmbedBuilder()
-            .setTitle("🏓 Pong!")
-            .setColor("#000")
-            .setTimestamp()
-            .setDescription(`Api Latency : ${client.ws.ping}`);
+        options = {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }
 
-        await interaction.reply({
-            embeds: [ping],
-        });
+        try {
+
+            let executeCmd = await fetch(`http://127.0.0.1:5698/api/command`, options)
+            if (executeCmd.status == 200) {
+                await interaction.reply({
+                    content: `⚙️ Executing command ${command.value} plz wait ...`,
+                });
+            } else {
+                await interaction.reply({
+                    content: `❌ Error While Executing command ${command.value}`,
+                });
+            }
+
+        } catch (error) {
+
+            if (error) {
+                await interaction.reply({
+                    content: `❌ Error While Executing command ${command.value}`,
+                });
+            }
+
+        }
+
+
+
+
+
     },
 };
 

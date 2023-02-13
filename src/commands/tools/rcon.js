@@ -3,7 +3,7 @@
 
 const { SlashCommandBuilder } = require("discord.js");
 const env = require("dotenv").config();
-const fetch = require('node-fetch');
+const axios = require('axios');
 
 
 //---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
@@ -26,23 +26,23 @@ module.exports = {
 
         data = {
             user: interaction.user.id,
-            channelID: interaction.channel.id,
-            cmd: command.value,
-            auth: process.env.AUTH
-
+            channelid: interaction.channel.id,
+            cmd: command.value
         }
 
         options = {
             method: 'post',
+            url: 'http://api.0powerdev.ir/maxgaming/rcon/mgcommand',
             headers: {
-                "Content-Type": "application/json",
+                'authorization': process.env.AUTH,
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            data: JSON.stringify(data)
         }
 
         try {
 
-            let executeCmd = await fetch(`http://127.0.0.1:5698/api/command`, options)
+            let executeCmd = await axios(options)
             if (executeCmd.status == 200) {
                 await interaction.reply({
                     content: `⚙️ Executing command ${command.value} plz wait ...`,
@@ -57,7 +57,7 @@ module.exports = {
 
             if (error) {
                 await interaction.reply({
-                    content: `❌ Error While Executing command ${command.value}`,
+                    content: `❌ Error While Executing command ${command.value}\n⚠️ Error String : ${error}`,
                 });
             }
 

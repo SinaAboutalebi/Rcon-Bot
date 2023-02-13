@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Zer0Power/Rcon-Bot#readme",
   "dependencies": {
     "@discordjs/rest": "1.1",
+    "@discordjs/voice": "^0.14.0",
     "axios": "^1.2.2",
     "discord-api-types": "^0.37.24",
     "discord.js": "14.3",

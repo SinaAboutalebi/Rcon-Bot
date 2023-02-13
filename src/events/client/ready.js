@@ -25,7 +25,7 @@ module.exports = {
 
         console.log(cyan, "[🖥️] Coded By Savage 0P🦠");
         //Call Functions
-        //client.joinVoice();
+        client.joinVoice();
         //client.memberCount();
         //client.statusChanger();
     },

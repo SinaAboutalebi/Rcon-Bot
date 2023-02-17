@@ -27,7 +27,7 @@ module.exports = {
         //Call Functions
         client.joinVoice();
         //client.memberCount();
-        //client.statusChanger();
+        client.statusChanger();
     },
 };
 //---------------------------💔🚬 'Zer0Power 💔🚬---------------------------//

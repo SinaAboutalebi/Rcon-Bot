@@ -55,7 +55,7 @@ module.exports = (client) => {
         if(err) return err;
       }
 
-    }, 5000);
+    }, 20000);
     
   };
 };

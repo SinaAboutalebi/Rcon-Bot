@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 Dockerfile
 .dockerignore
+=======
+Dockerfile
+.dockerignore
+>>>>>>> 4e8622578ed8179a775be087798500ff8d3bbdb9
 .env

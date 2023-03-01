@@ -2,9 +2,8 @@
 //Packages
 
 const { SlashCommandBuilder } = require("discord.js");
-const env = require("dotenv").config();
 const axios = require('axios');
-
+const getServer = require('../../functions/utility/getServer');
 
 //---------------------------🤍🍷 'Zer0Power 🍷🤍---------------------------//
 //Command 
@@ -24,15 +23,20 @@ module.exports = {
 
         const command = interaction.options.get("command")
 
+        const Server = getServer(interaction.channel.id)
+
         data = {
+            cmd: command.value,
+            sv: Server.ip,
+            port: Server.port,
+            pass: process.env.PASS,
             user: interaction.user.id,
-            channelid: interaction.channel.id,
-            cmd: command.value
+            channelid: interaction.channel.id
         }
 
         options = {
             method: 'post',
-            url: 'http://api.0powerdev.ir/maxgaming/rcon/mgcommand',
+            url: 'http://api.0powerdev.ir/maxgaming/rcon/mgCommand',
             headers: {
                 'authorization': process.env.AUTH,
                 'Content-Type': 'application/json'
